@@ -1,6 +1,5 @@
 package com.fatsnake.mq.rocketmq.base.producer;
 
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
@@ -10,9 +9,11 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @Auther: fatsnake
- * @Description": 发送同步消息
+ * @Description": 发送同步消息：这种可靠性同步地发送方式使用的比较广泛，比如：重要的消息通知，短信通知。
  * @Date:2020-02-09 09:35
  * Copyright (c) 2020, zaodao All Rights Reserved.
+ * 集群为双主双从
+ *
  */
 public class SyncProducer {
     public static void main(String[] args) throws Exception {
