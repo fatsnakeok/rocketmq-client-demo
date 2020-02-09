@@ -9,13 +9,13 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @Auther: fatsnake
- * @Description": 发送同步消息：这种可靠性同步地发送方式使用的比较广泛，比如：重要的消息通知，短信通知。
+ * @Description": 发送单向消息：这种方式主要用在不特别关心发送结果的场景，例如日志发送。
  * @Date:2020-02-09 09:35
  * Copyright (c) 2020, zaodao All Rights Reserved.
  * 集群为双主双从
  *
  */
-public class SyncProducer {
+public class OneWayProducer {
     public static void main(String[] args) throws Exception {
 //        1.创建消息生产者producer，并制定生产者组名
         DefaultMQProducer producer = new DefaultMQProducer("group1");
@@ -31,16 +31,10 @@ public class SyncProducer {
              * 参数二：消费tag
              * 参数三：消息内容
              */
-            Message msg = new Message("baseTopic", "tag1", ("Hello World 同步消息" + i).getBytes());
-            // 5.发送消息
-            SendResult result = producer.send(msg);
-            // 发送状态
-            SendStatus status = result.getSendStatus();
-            // 消息ID
-            String msgId = result.getMsgId();
-            // 消息接受队列ID
-            int queueId = result.getMessageQueue().getQueueId();
-            System.out.println("发送状态："+result+",消息ID"+msgId+",队列"+queueId);
+            Message msg = new Message("baseTopic", "tag3", ("Hello World 单向消息" + i).getBytes());
+            // 5.发送单向消息
+            producer.sendOneway(msg);
+
 
             // 线程睡1秒
             TimeUnit.SECONDS.sleep(1);
