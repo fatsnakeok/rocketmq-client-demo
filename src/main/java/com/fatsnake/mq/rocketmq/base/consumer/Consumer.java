@@ -5,6 +5,7 @@ import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 
 import java.util.List;
 
@@ -13,7 +14,9 @@ import java.util.List;
  * @Description": 消息的接受者
  * @Date:2020-02-09 17:08
  * Copyright (c) 2020, zaodao All Rights Reserved.
- * 负载均衡模式:消费者采用负载均衡方式消费消息，多个消费者共同消费队列消息，每个消费者处理的消息不同
+ * 负载均衡模式（默认模式）:消费者采用负载均衡方式消费消息，多个消费者共同消费队列消息，每个消费者处理的消息不同
+ * 广播模式（需要手动设置）：消费者采用广播的方式消费消息，每个消费者消费的消息都是相同的
+ * 测试时：启动两个消费者
  */
 public class Consumer {
     public static void main(String[] args) throws Exception {
@@ -23,6 +26,19 @@ public class Consumer {
         consumer.setNamesrvAddr("rockermq-nameserver1:19876;rockermq-nameserver2:29876");
 //        3.订阅主题Topic和Tag
         consumer.subscribe("baseTopic", "tag1");
+
+        // 监听多个tag
+//        consumer.subscribe("baseTopic", "tag1 || tag2 || tag3");
+        // 监听所有tag
+//        consumer.subscribe("baseTopic", "*");
+
+        // 不设置默认是 负载均衡模式消费
+//        consumer.setMessageModel(MessageModel.CLUSTERING);
+
+        // 广播模式消费
+        consumer.setMessageModel(MessageModel.BROADCASTING);
+
+
 //        4.设置回调函数，处理消息
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             // 接受消息内容
