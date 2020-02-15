@@ -1,4 +1,4 @@
-package com.fatsnake.mq.rocketmq.base.order;
+package com.fatsnake.mq.rocketmq.order;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.MessageQueueSelector;

@@ -1,6 +1,5 @@
-package com.fatsnake.mq.rocketmq.base.delay;
+package com.fatsnake.mq.rocketmq.delay;
 
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;

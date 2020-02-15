@@ -1,4 +1,4 @@
-package com.fatsnake.mq.rocketmq.base.order;
+package com.fatsnake.mq.rocketmq.order;
 
 import java.util.ArrayList;
 import java.util.List;
