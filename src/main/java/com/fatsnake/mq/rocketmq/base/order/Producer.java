@@ -51,5 +51,7 @@ public class Producer {
                 }
             }, orderStepList.get(i).getOrderId());
         }
+//        6.关闭生产者producer
+        producer.shutdown();
     }
 }
