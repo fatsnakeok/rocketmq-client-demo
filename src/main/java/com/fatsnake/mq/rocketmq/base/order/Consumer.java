@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @Auther: fatsnake
- * @Description": 顺序消息--生产者
+ * @Description": 顺序消息--消费者
  * @Date:2020-02-15 16:08
  * Copyright (c) 2020, zaodao All Rights Reserved.
  */
